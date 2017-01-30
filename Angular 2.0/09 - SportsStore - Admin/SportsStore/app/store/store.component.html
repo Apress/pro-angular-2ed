@@ -1,0 +1,51 @@
+﻿<div class="navbar navbar-inverse bg-inverse">  
+    <a class="navbar-brand">SPORTS STORE</a>  
+    <cart-summary></cart-summary>
+</div>  
+<div class="col-xs-3 p-a-1">  
+    <button class="btn btn-block btn-outline-primary"
+            (click)="changeCategory()">
+        Home
+    </button>
+    <button *ngFor="let cat of categories"
+            class="btn btn-outline-primary btn-block"
+            [class.active]="cat == selectedCategory"
+            (click)="changeCategory(cat)">
+        {{cat}}
+    </button>
+    <button class="btn btn-block btn-danger m-t-3" routerLink="/admin">
+        Admin
+    </button>
+</div>  
+<div class="col-xs-9 p-a-1">  
+    <div *ngFor="let product of products" class="card card-outline-primary">
+        <h4 class="card-header">
+            {{product.name}}
+            <span class="pull-xs-right tag tag-pill tag-primary">
+                {{ product.price | currency:"USD":true:"2.2-2" }}
+            </span>
+        </h4>
+        <div class="card-text p-a-1">
+            {{product.description}}
+            <button class="btn btn-success btn-sm pull-xs-right"
+                    (click)="addProductToCart(product)">
+                Add To Cart
+            </button>
+        </div>
+    </div>   
+    <div class="form-inline pull-xs-left m-r-1">
+        <select class="form-control" [value]="productsPerPage" 
+                (change)="changePageSize($event.target.value)">
+            <option value="3">3 per Page</option>
+            <option value="4">4 per Page</option>
+            <option value="6">6 per Page</option>
+            <option value="8">8 per Page</option>
+        </select>
+    </div>
+    <div class="btn-group pull-xs-right">
+        <button *counter="let page of pageCount" (click)="changePage(page)"
+            class="btn btn-outline-primary" [class.active]="page == selectedPage">
+                {{page}}
+        </button>
+    </div>     
+</div>

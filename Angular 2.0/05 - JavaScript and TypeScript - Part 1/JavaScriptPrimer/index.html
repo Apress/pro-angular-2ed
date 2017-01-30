@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Primer</title>
+	<meta charset="utf-8" />
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" 
+          rel="stylesheet" />
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script>
+        System.config({ packages: {"": {}}});
+        System.import("primer").catch(function(err){ console.error(err); });
+    </script>
+</head>
+<body class="m-a-1">
+    <h3>JavaScript Primer</h3>
+</body>
+</html>

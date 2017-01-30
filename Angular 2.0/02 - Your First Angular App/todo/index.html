@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo</title>
+    <meta charset="utf-8" />
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" 
+          rel="stylesheet" />
+    <script src="node_modules/classlist.js/classList.min.js"></script>
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.min.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script>
+        var paths = {
+            "rxjs/*": "node_modules/rxjs/bundles/Rx.min.js",
+            "@angular/*": "node_modules/@angular/*"
+        }
+        var packages = { "app": {} };
+        var angularModules = ["common", "compiler", "core", "forms",
+            "platform-browser", "platform-browser-dynamic"];
+        angularModules.forEach(function (pkg) {
+            packages["@angular/" + pkg] = {
+                main: "/bundles/" + pkg + ".umd.min.js"
+            };
+        });
+        System.config({ paths: paths, packages: packages });
+        System.import("app/main").catch(function(err){ console.error(err); });
+    </script>
+</head>
+<body class="m-a-1">
+    <todo-app>Angular placeholder</todo-app>
+</body>
+</html>

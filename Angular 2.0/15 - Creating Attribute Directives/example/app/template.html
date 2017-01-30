@@ -1,0 +1,54 @@
+﻿<style>
+    input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }
+    input.ng-dirty.ng-valid { border: 2px solid #6bc502 }
+</style>
+
+<div class="col-xs-6">
+    <form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)">
+        <div class="form-group" *ngFor="let control of form.productControls">
+            <label>{{control.label}}</label>
+            <input class="form-control" 
+                [(ngModel)]="newProduct[control.modelProperty]"
+                name="{{control.modelProperty}}"
+                formControlName="{{control.modelProperty}}" />
+            <ul class="text-danger list-unstyled"
+                    *ngIf="(formSubmitted || control.dirty) && control.invalid">
+                <li *ngFor="let error of control.getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-primary" type="submit"
+            [disabled]="formSubmitted && !form.valid"
+            [class.btn-secondary]="formSubmitted && form.invalid">
+                Create
+        </button>
+    </form>
+</div>
+
+<div class="col-xs-6">
+
+    <div class="form-group bg-info p-a-1">
+        <label>Name:</label>
+        <input class="bg-primary" [(paModel)]="newProduct.name" #paModel="paModel" />
+        <div class="bg-primary">Direction: {{paModel.direction}}</div>
+    </div>
+
+
+    <table class="table table-sm table-bordered table-striped">
+        <tr><th></th><th>Name</th><th>Category</th><th>Price</th></tr>
+        <tr *ngFor="let item of getProducts(); let i = index"
+                [pa-attr]="getProducts().length < 6 ? 'bg-success' : 'bg-warning'"
+                [pa-product]="item" (pa-category)="newProduct.category=$event">
+            <td>{{i + 1}}</td>
+            <td>{{item.name}}</td>
+            <td [pa-attr]="item.category == 'Soccer' ? 'bg-info' : null">
+                {{item.category}}
+            </td>
+            <td [pa-attr]="'bg-info'">{{item.price}}</td>
+        </tr>
+    </table>
+</div>
+
+
+
