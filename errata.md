@@ -16,6 +16,19 @@ The commands required to install the type data should be:
     npm run typings -- install dt~node --save --global
 
 ***
+On **page 142**:
+
+The code for removing a single item from the cart omits an argument when calling `splice` that means all items are removed. The `removeLine` method should be as follows:
+
+    removeLine(id: number) {
+        let index = this.lines.findIndex(line => line.product.id == id);
+        this.lines.splice(index, 1);
+        this.recalculate();
+    }
+
+(Thanks to AndrewD14 for reporting this problem).
+
+***
 On **page 200**:
 
 When you run the `npm run ngc` command, you may see an error like this:
@@ -46,3 +59,5 @@ Save the package.json file and run the following command to install the package:
     npm install
 
 The `npm run ngc` command should now work correctly.
+
+(Thanks to Paul Lay for reporting this problem).
