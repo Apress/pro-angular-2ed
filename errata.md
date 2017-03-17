@@ -61,3 +61,9 @@ Save the package.json file and run the following command to install the package:
 The `npm run ngc` command should now work correctly.
 
 (Thanks to Paul Lay for reporting this problem).
+***
+On **page 608**:
+
+The URL at the top of the page should be http://localhost:3500/products/1. The original text omits the port number.
+
+(Thanks to Paul Lay for reporting this problem).
