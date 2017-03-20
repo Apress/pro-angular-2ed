@@ -91,3 +91,31 @@ On **page 608**:
 The URL at the top of the page should be http://localhost:3500/products/1. The original text omits the port number.
 
 (Thanks to Paul Lay for reporting this problem).
+
+***
+In **Chapter 28**
+
+The durations for animation transitions throughout this chapter contain spaces between the number and the unit, which prevents the browser from running the application. To resolve this problem, either use the source code from this repository or remove the spaces from the animation transition statements. For example, here is Listing 28-6 from page 728:
+
+    import { trigger, style, state, transition, animate } from "@angular/core";
+    export const HighlightTrigger = trigger("rowHighlight", [
+        state("selected", style({
+            backgroundColor: "lightgreen",
+            fontSize: "20px"
+        })),
+        state("notselected", style({
+            backgroundColor: "lightsalmon",
+            fontSize: "12px"
+        })),
+        transition("selected => notselected", animate("200 ms")),
+        transition("notselected => selected", animate("400 ms"))
+    ]);
+
+The two `transition` statements have spaces in the argument to the `animate` function: `200<space>ms` and `400<space>ms`. To correct this problem, remove the spaces, like this:
+
+    ...
+    transition("selected => notselected", animate("200ms")),
+    transition("notselected => selected", animate("400ms"))
+    ...
+
+(Thanks to Paul Lay for being the first to report this problem).
