@@ -1,5 +1,28 @@
 # Errata for *Pro Angular*
 
+**General**:
+
+You may see errors like this one when you save changes to TypeScript files:
+
+    node_modules/rxjs/Observable.d.ts(10,66): error TS2304: Cannot find name 'Promise'
+
+To fix this problem, replace the tsconfig.json file with this one, which includes an additional configuration property called `lib`:
+
+    {
+      "compilerOptions": {
+          "target": "es5",
+          "module": "commonjs",
+          "moduleResolution": "node",
+          "emitDecoratorMetadata": true,
+          "experimentalDecorators": true,
+          "lib": ["es2015", "dom"]    
+        },
+        exclude": [ "node_modules" ]
+    }
+
+(Thanks to Leonard E James for reporting this problem).
+
+***
 On **page 10**:
 
 The commands required to install the type data should be:
@@ -8,6 +31,7 @@ The commands required to install the type data should be:
     npm run typings -- install dt~node --save --global
 
 ***
+
 On **page 114**:
 
 The commands required to install the type data should be:
