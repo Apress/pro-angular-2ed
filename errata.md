@@ -17,10 +17,11 @@ To fix this problem, replace the tsconfig.json file with this one, which include
           "experimentalDecorators": true,
           "lib": ["es2015", "dom"]    
         },
-        exclude": [ "node_modules" ]
+        "exclude": [ "node_modules" ]
     }
 
 (Thanks to Leonard E James for reporting this problem).
+(And thanks to Yisroel Lazerson for reporting an error in the original correction).
 
 ***
 On **page 10**:
