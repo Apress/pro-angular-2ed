@@ -1,0 +1,40 @@
+<div class="form-group bg-info p-a-1">
+    <label>Category</label>
+    <select [(ngModel)]="highlightCategory" class="form-control">
+        <option value="">None</option>
+        <option *ngFor="let category of categories">
+            {{category}}
+        </option>
+    </select>
+</div>
+<table class="table table-sm table-bordered table-striped">
+    <tr>
+        <th>ID</th><th>Name</th><th>Category</th><th>Price</th><th></th>
+    </tr>
+    <tr *ngFor="let item of getProducts()" 
+            [@rowHighlight]="getRowState(item.category)"
+            (@rowHighlight.start)="writeAnimationEvent($event, item.name, true)"
+            (@rowHighlight.done)="writeAnimationEvent($event, item.name, false)">
+        <td style="vertical-align:middle">{{item.id}}</td>
+        <td style="vertical-align:middle">{{item.name}}</td>
+        <td style="vertical-align:middle">{{item.category}}</td>
+        <td style="vertical-align:middle">
+            {{item.price | currency:"USD":true }}
+        </td>
+        <td class="text-xs-center">
+            <button class="btn btn-danger btn-sm" 
+                    (click)="deleteProduct(item.id)">
+                Delete
+            </button>
+            <button class="btn btn-warning btn-sm"
+                [routerLink]="['/form', 'edit', item.id]">
+                Edit
+            </button>
+        </td>
+    </tr>
+</table>
+<div class="col-xs-12 p-t-1">
+    <button class="btn btn-primary" routerLink="/form/create">
+        Create New Product
+    </button>
+</div>

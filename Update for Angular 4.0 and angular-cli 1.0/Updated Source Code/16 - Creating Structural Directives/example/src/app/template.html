@@ -1,0 +1,60 @@
+<style>
+    input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }
+    input.ng-dirty.ng-valid { border: 2px solid #6bc502 }
+</style>
+
+<div class="col-xs-4">
+    <form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)">
+        <div class="form-group" *ngFor="let control of form.productControls">
+            <label>{{control.label}}</label>
+            <input class="form-control" 
+                [(ngModel)]="newProduct[control.modelProperty]"
+                name="{{control.modelProperty}}"
+                formControlName="{{control.modelProperty}}" />
+            <ul class="text-danger list-unstyled"
+                    *ngIf="(formSubmitted || control.dirty) && !control.valid">
+                <li *ngFor="let error of control.getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-primary" type="submit"
+            [disabled]="formSubmitted && !form.valid"
+            [class.btn-secondary]="formSubmitted && !form.valid">
+                Create
+        </button>
+    </form>
+</div>
+<div class="col-xs-8">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" [(ngModel)]="showTable" />
+            Show Table
+        </label>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" [(ngModel)]="darkColor" />
+            Dark Cell Color
+        </label>
+    </div>
+
+    <table *paIf="showTable" [paCellDarkColor]="darkColor"
+            class="table table-sm table-bordered table-striped">
+        <tr><th></th><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
+        <tr *paFor="let item of getProducts(); let i = index; let odd = odd;
+                let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
+            <td style="vertical-align:middle">{{i + 1}}</td>
+            <td style="vertical-align:middle">{{item.name}}</td>
+            <td style="vertical-align:middle">{{item.category}}</td>
+            <td style="vertical-align:middle">{{item.price}}</td>
+            <td class="text-xs-center">
+                <button class="btn btn-danger btn-sm" (click)="deleteProduct(i)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+

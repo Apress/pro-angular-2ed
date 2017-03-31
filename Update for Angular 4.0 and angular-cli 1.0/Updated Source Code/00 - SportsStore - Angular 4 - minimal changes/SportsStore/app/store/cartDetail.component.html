@@ -1,0 +1,61 @@
+﻿<div class="navbar navbar-inverse bg-inverse">  
+    <a class="navbar-brand">SPORTS STORE</a>  
+</div>  
+
+<div class="m-a-1">
+    <h2 class="text-xs-center">Your Cart</h2>
+    <table class="table table-bordered table-striped p-a-1">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Product</th>
+                <th class="text-xs-right">Price</th>
+                <th class="text-xs-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="cart.lines.length == 0">
+                <td colspan="4" class="text-xs-center">
+                    Your cart is empty
+                </td>
+            </tr>
+            <tr *ngFor="let line of cart.lines">
+                <td>
+                    <input type="number" class="form-control-sm" 
+                           style="width:5em" 
+                           [value]="line.quantity"
+                           (change)="cart.updateQuantity(line.product, 
+                                $event.target.value)"/>
+                </td>
+                <td>{{line.product.name}}</td>
+                <td class="text-xs-right">
+                    {{line.product.price | currency:"USD":true:"2.2-2"}}
+                </td>
+                <td class="text-xs-right">
+                    {{(line.lineTotal) | currency:"USD":true:"2.2-2" }}
+                </td>
+                <td class="text-xs-center">
+                    <button class="btn btn-sm btn-danger"
+                            (click)="cart.removeLine(line.product.id)">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-xs-right">Total:</td>
+                <td class="text-xs-right">
+                    {{cart.cartPrice | currency:"USD":true:"2.2-2"}}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="text-xs-center">
+    <button class="btn btn-primary" routerLink="/store">Continue Shopping</button>
+    <button class="btn btn-secondary" routerLink="/checkout" 
+            [disabled]="cart.lines.length == 0">
+        Checkout
+    </button>
+</div>

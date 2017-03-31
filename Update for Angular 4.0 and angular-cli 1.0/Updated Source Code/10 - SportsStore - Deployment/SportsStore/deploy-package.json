@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.4",
+    "font-awesome": "4.7.0"
+  },
+
+  "devDependencies": {
+    "express": "4.14.0",
+    "concurrently": "2.2.0",
+    "json-server": "0.8.21",
+    "jsonwebtoken": "7.1.9"
+  },
+
+  "scripts": {
+    "start": "concurrently \"npm run express\" \"npm run json\" ",
+    "express": "node server.js",
+    "json": "json-server data.js -m authMiddleware.js -p 3500"
+  }
+}

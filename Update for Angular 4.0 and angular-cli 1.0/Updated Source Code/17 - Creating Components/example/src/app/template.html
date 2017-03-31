@@ -1,0 +1,8 @@
+<div class="col-xs-4 p-a-1">
+    <paProductForm (paNewProduct)="addProduct($event)"></paProductForm>
+</div>
+<div class="col-xs-8 p-a-1">
+    <paToggleView>
+        <paProductTable [model]="model"></paProductTable>
+    </paToggleView>
+</div>

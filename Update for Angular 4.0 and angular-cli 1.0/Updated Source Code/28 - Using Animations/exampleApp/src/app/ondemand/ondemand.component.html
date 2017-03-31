@@ -1,0 +1,13 @@
+<div class="bg-primary p-a-1">This is the ondemand component</div>
+<div class="col-xs-12 m-t-1">
+    <router-outlet></router-outlet>
+</div>
+<div class="col-xs-6">
+    <router-outlet name="left"></router-outlet>
+</div>
+<div class="col-xs-6">
+    <router-outlet name="right"></router-outlet>
+</div>
+<button class="btn btn-secondary m-t-1" routerLink="/ondemand">Normal</button>
+<button class="btn btn-secondary m-t-1" routerLink="/ondemand/swap">Swap</button>
+<button class="btn btn-primary m-t-1" routerLink="/">Back</button>
