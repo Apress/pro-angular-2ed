@@ -54,6 +54,15 @@ The code for removing a single item from the cart omits an argument when calling
 (Thanks to AndrewD14 for reporting this problem).
 
 ***
+On **pages 145***:
+
+The name of the module used by the `import` statement is incorrect and should be:
+
+`import { CartSummaryComponent } from "./cartSummary.component";`
+
+(Thanks to Alvaro Denis for reporting this problem).
+
+***
 On **page 200**:
 
 When you run the `npm run ngc` command, you may see an error like this:
