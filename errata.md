@@ -1,5 +1,25 @@
 # Errata for *Pro Angular*
 
+## Errata for Angular 4 Chapters
+
+**General**
+
+The application contents may be unstyled if you install a later version of the `@angular-cli` package than specified in the setup chapter. 
+
+To resolve this problem, you can either install version 1.0 of the `@angular-cli` package, as described in the chapters, or add an entry for the Bootstrap CSS file to the `styles` section of the `.angular-cli` file in the project folder, like this:
+
+    ...
+    "styles": [
+         "styles.css", 
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css" 
+    ],
+    ...
+
+Save the file, run ng serve and reload your browser to see the styled content.
+
+
+## Errata for All Chapters
+
 **General**:
 
 You may see errors like this one when you save changes to TypeScript files:
