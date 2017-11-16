@@ -1,0 +1,24 @@
+<table class="table table-sm table-bordered table-striped">
+    <tr>
+        <th>ID</th><th>Name</th><th>Category</th><th>Price</th><th></th>
+    </tr>
+    <tr *ngFor="let item of getProducts()">
+        <td style="vertical-align:middle">{{item.id}}</td>
+        <td style="vertical-align:middle">{{item.name}}</td>
+        <td style="vertical-align:middle">{{item.category}}</td>
+        <td style="vertical-align:middle">
+            {{item.price | currency:"USD":true }}
+        </td>
+        <td class="text-xs-center">
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">
+                Delete
+            </button>
+            <button class="btn btn-warning btn-sm" (click)="editProduct(item.id)">
+                Edit
+            </button>
+        </td>
+    </tr>
+</table>
+<button class="btn btn-primary" (click)="createProduct()">
+    Create New Product
+</button>

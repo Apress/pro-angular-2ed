@@ -1,0 +1,5 @@
+<div *ngIf="lastMessage" 
+class="bg-info p-a-1 text-xs-center" 
+[class.bg-danger]="lastMessage.error">
+   <h4>{{lastMessage.text}}</h4> 
+</div>
