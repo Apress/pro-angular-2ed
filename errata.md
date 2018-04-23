@@ -1,5 +1,13 @@
 # Errata for *Pro Angular*
 
+## Errata for Angular 5 Chapters
+
+There has been a breaking change that prevents the CLI tools for working as described in the replacement chapters and which generates an error stating that the `@angular-devkit/core` module cannot be found. Run this command to update the `@angular/cli` package and resolve this issue:
+
+    npm install --global @angular/cli@1.7.4
+    
+
+
 ## Errata for Angular 4 Chapters
 
 **General**
