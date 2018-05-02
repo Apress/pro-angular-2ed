@@ -19,7 +19,8 @@ To resolve this problem, you can either install version 1.0 of the `@angular-cli
     ...
     "styles": [
          "styles.css", 
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css" 
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css"    
     ],
     ...
 
